@@ -98,14 +98,49 @@ export default function Navbar() {
               About Us
             </Link>
 
-            <Link
-              href="/#academics"
-              className={`text-sm font-medium transition-colors hover:text-accent relative ${
-                isSolid ? "text-text" : "text-white/90"
-              }`}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
             >
-              Academics
-            </Link>
+              <button
+                className={`text-sm font-medium transition-colors hover:text-accent relative flex items-center gap-1 ${
+                  isSolid ? "text-text" : "text-white/90"
+                }`}
+              >
+                Academics
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    variants={dropdownVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl py-2 border border-border overflow-hidden"
+                  >
+                    <Link
+                      href="/#academics"
+                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      onClick={() => setIsDropdownOpen(false)}
+                    >
+                      Academic Programs
+                    </Link>
+                    <Link
+                      href="/past-questions"
+                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      onClick={() => setIsDropdownOpen(false)}
+                    >
+                      Past Questions
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             <Link
               href="/#news"
@@ -193,13 +228,47 @@ export default function Navbar() {
               >
                 About Us
               </Link>
-              <Link
-                href="/#academics"
-                className="block px-3 py-3 text-base font-medium rounded-md transition-colors text-text hover:text-primary hover:bg-bg-alt"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Academics
-              </Link>
+              <div className="space-y-1">
+                <button
+                  className="w-full flex items-center justify-between px-3 py-3 text-base font-medium rounded-md transition-colors text-text hover:text-primary hover:bg-bg-alt"
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                >
+                  Academics
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <AnimatePresence>
+                  {isDropdownOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden pl-6 space-y-1"
+                    >
+                      <Link
+                        href="/#academics"
+                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Academic Programs
+                      </Link>
+                      <Link
+                        href="/past-questions"
+                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Past Questions
+                      </Link>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
               <Link
                 href="/#news"
                 className="block px-3 py-3 text-base font-medium rounded-md transition-colors text-text hover:text-primary hover:bg-bg-alt"
