@@ -57,18 +57,38 @@ export default function HeroSection() {
           &quot;Our endeavor is to serve a quality education.&quot;
         </motion.p>
 
-        {/* CTA Button */}
+        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.5, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 1.5, ease: "easeOut" as const }}
+          className="flex flex-col sm:flex-row items-center gap-4"
         >
-          <Link
-            href="#"
-            className="inline-flex items-center justify-center px-8 py-3 md:py-4 md:px-10 text-base md:text-lg font-medium text-primary bg-white rounded-full shadow-lg hover:bg-accent-light hover:text-white transition-all duration-300 transform hover:scale-105"
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
           >
-            Contact Us
-          </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-3 md:py-4 md:px-10 text-base md:text-lg font-medium text-white bg-accent rounded-full shadow-lg hover:bg-accent-light transition-colors duration-300"
+            >
+              Contact Us
+            </Link>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.8, ease: "easeOut" as const }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <Link
+              href="/gallery"
+              className="inline-flex items-center justify-center px-8 py-3 md:py-4 md:px-10 text-base md:text-lg font-medium text-white border-2 border-white/70 rounded-full hover:bg-white/10 transition-colors duration-300"
+            >
+              Explore Gallery
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
 
