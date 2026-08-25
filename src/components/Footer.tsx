@@ -48,8 +48,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-accent transition-colors duration-200">
-                  Contact Us
+                <Link href="/#contact" className="hover:text-accent transition-colors duration-200">
+                  Get in Touch
                 </Link>
               </li>
             </ul>
@@ -57,7 +57,7 @@ export default function Footer() {
 
           {/* Column 3: Contact Info */}
           <div>
-            <h4 className="text-white text-lg font-semibold mb-6">Contact Us</h4>
+            <h4 className="text-white text-lg font-semibold mb-6">Get in Touch</h4>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <svg className="w-5 h-5 text-accent mt-0.5 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -97,6 +97,17 @@ export default function Footer() {
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
+                  </svg>
+                </a>
+                <a 
+                  href="https://www.tiktok.com/@sunriseschool33?_r=1&_t=ZS-99Ah2PzfzyZ" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-colors duration-300"
+                  aria-label="TikTok"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.34 2.88 2.88 0 012.31-4.53 2.66 2.66 0 011.61.53V9.5a6.33 6.33 0 00-2-.33 6.32 6.32 0 106.66 6.18V8.66a8.3 8.3 0 004.3 1.15V6.36a5.2 5.2 0 01-1.46.33z" />
                   </svg>
                 </a>
               </div>

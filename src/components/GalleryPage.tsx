@@ -100,7 +100,7 @@ export default function GalleryPage() {
   }, [selectedIndex]);
 
   return (
-    <div className="min-h-screen bg-bg pt-32 pb-24 relative">
+    <section id="gallery" className="py-24 bg-bg relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -240,6 +240,6 @@ export default function GalleryPage() {
           </div>
         )}
       </AnimatePresence>
-    </div>
+    </section>
   );
 }

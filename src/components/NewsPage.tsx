@@ -48,7 +48,7 @@ const itemVariants = {
 
 export default function NewsPage() {
   return (
-    <div className="min-h-screen bg-bg pt-32 pb-24">
+    <section id="news" className="py-24 bg-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
@@ -131,6 +131,6 @@ export default function NewsPage() {
 
         </div>
       </div>
-    </div>
+    </section>
   );
 }

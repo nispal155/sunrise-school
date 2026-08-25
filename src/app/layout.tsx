@@ -21,6 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} scroll-smooth antialiased h-full`}>
+      <head>
+        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css' />
+      </head>
       <body className="min-h-full flex flex-col font-sans">
         <Navbar />
         <main className="flex-grow">{children}</main>

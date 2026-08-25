@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-primary pt-20">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-primary pt-20">
       {/* Background Image & Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -23,21 +23,7 @@ export default function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-        {/* Animated Main Title */}
-        <div className="mb-2">
-          <AnimatedText
-            text="Sunrise English"
-            el="h1"
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-2"
-            delay={0}
-          />
-          <AnimatedText
-            text="Boarding School"
-            el="h1"
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-8 mt-2"
-            delay={0.5}
-          />
-        </div>
+        {/* Animated Main Title removed per request */}
 
         {/* Gold Divider Line */}
         <motion.div
@@ -69,7 +55,7 @@ export default function HeroSection() {
             whileTap={{ scale: 0.97 }}
           >
             <Link
-              href="/contact"
+              href="/#contact"
               className="inline-flex items-center justify-center px-8 py-3 md:py-4 md:px-10 text-base md:text-lg font-medium text-white bg-accent rounded-full shadow-lg hover:bg-accent-light transition-colors duration-300"
             >
               Contact Us
