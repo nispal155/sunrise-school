@@ -3,6 +3,7 @@ import AboutSection from "@/components/AboutSection";
 import PrincipalMessage from "@/components/PrincipalMessage";
 import AcademicsSection from "@/components/AcademicsSection";
 import AdmissionsSection from "@/components/AdmissionsSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import NewsPage from "@/components/NewsPage";
 import GalleryPage from "@/components/GalleryPage";
 import ContactPage from "@/components/ContactPage";
@@ -19,6 +20,7 @@ export default function Home() {
       <NewsPage />
       <GalleryPage />
       <AdmissionsSection />
+      <TestimonialsSection />
       <ContactPage />
     </>
   );
