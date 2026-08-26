@@ -56,6 +56,7 @@ export default function StaffPage() {
 
         {/* Administration Section */}
         <motion.section
+          id="administration"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -84,6 +85,7 @@ export default function StaffPage() {
 
         {/* Teachers Section */}
         <motion.section
+          id="teachers"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -110,8 +112,9 @@ export default function StaffPage() {
           </div>
         </motion.section>
 
-        {/* Transport Section */}
+        {/* Support Team Section */}
         <motion.section
+          id="support-team"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -119,7 +122,7 @@ export default function StaffPage() {
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="w-1.5 h-8 bg-accent rounded-full" />
-            <h2 className="text-2xl md:text-3xl font-bold text-primary">Transport</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-primary">Support Team</h2>
           </div>
           
           <div className="bg-white rounded-2xl p-8 shadow-sm border border-border transition-shadow hover:shadow-md">

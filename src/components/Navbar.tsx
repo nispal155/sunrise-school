@@ -21,6 +21,7 @@ const mobileMenuVariants = {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isStaffDropdownOpen, setIsStaffDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   // If we are on the home page, it becomes solid only when scrolled.
@@ -151,6 +152,57 @@ export default function Navbar() {
                       onClick={() => setIsDropdownOpen(false)}
                     >
                       Fee Structure
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <div
+              className="relative"
+              onMouseEnter={() => setIsStaffDropdownOpen(true)}
+              onMouseLeave={() => setIsStaffDropdownOpen(false)}
+            >
+              <button
+                className={`text-sm font-medium transition-colors hover:text-accent relative flex items-center gap-1 ${
+                  isSolid ? "text-text" : "text-white/90"
+                }`}
+              >
+                Our Team
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <AnimatePresence>
+                {isStaffDropdownOpen && (
+                  <motion.div
+                    variants={dropdownVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl py-2 border border-border overflow-hidden"
+                  >
+                    <Link
+                      href="/staff#teachers"
+                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      onClick={() => setIsStaffDropdownOpen(false)}
+                    >
+                      Teachers
+                    </Link>
+                    <Link
+                      href="/staff#administration"
+                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      onClick={() => setIsStaffDropdownOpen(false)}
+                    >
+                      Administration
+                    </Link>
+                    <Link
+                      href="/staff#support-team"
+                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      onClick={() => setIsStaffDropdownOpen(false)}
+                    >
+                      Support Team
                     </Link>
                   </motion.div>
                 )}
@@ -293,6 +345,54 @@ export default function Navbar() {
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Fee Structure
+                      </Link>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+              <div className="space-y-1">
+                <button
+                  className="w-full flex items-center justify-between px-3 py-3 text-base font-medium rounded-md transition-colors text-text hover:text-primary hover:bg-bg-alt"
+                  onClick={() => setIsStaffDropdownOpen(!isStaffDropdownOpen)}
+                >
+                  Our Team
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${isStaffDropdownOpen ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <AnimatePresence>
+                  {isStaffDropdownOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden pl-6 space-y-1"
+                    >
+                      <Link
+                        href="/staff#teachers"
+                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Teachers
+                      </Link>
+                      <Link
+                        href="/staff#administration"
+                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Administration
+                      </Link>
+                      <Link
+                        href="/staff#support-team"
+                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Support Team
                       </Link>
                     </motion.div>
                   )}
