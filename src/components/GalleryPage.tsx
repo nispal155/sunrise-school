@@ -200,7 +200,7 @@ export default function GalleryPage() {
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
 
       {/* Lightbox Modal */}
