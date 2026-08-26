@@ -83,13 +83,18 @@ export default function AboutSection() {
               <motion.div
                 key={index}
                 variants={cardVariants}
-                className="bg-primary rounded-2xl p-8 shadow-md flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
+                className="bg-white rounded-[2rem] p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(30,58,95,0.08)] group relative overflow-hidden"
               >
-                <div className="mb-6 inline-flex items-center justify-center p-3 rounded-xl bg-white/5 group-hover:bg-accent/10 transition-colors">
-                  <i className={`${feature.icon} text-3xl text-accent`}></i>
+                {/* Decorative background element */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-accent/20 to-transparent rounded-bl-full -z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0"></div>
+                
+                <div className="relative z-10 mb-8 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/5 text-primary group-hover:bg-primary group-hover:text-accent transition-all duration-500 shadow-sm group-hover:shadow-md">
+                  <i className={`${feature.icon} text-3xl transition-transform duration-500 group-hover:scale-110`}></i>
                 </div>
-                <h4 className="text-xl font-bold text-white mb-3">{feature.title}</h4>
-                <p className="text-white/80 leading-relaxed text-sm flex-grow">
+                
+                <h4 className="relative z-10 text-xl md:text-2xl font-bold text-primary mb-4 transition-colors duration-300">{feature.title}</h4>
+                
+                <p className="relative z-10 text-text-muted leading-relaxed flex-grow">
                   {feature.description}
                 </p>
               </motion.div>
