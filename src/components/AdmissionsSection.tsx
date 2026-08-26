@@ -8,6 +8,7 @@ import MagneticButton from "./MagneticButton";
 
 export default function AdmissionsSection() {
   const [step, setStep] = useState(1);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   
   const formVariants = {
     hidden: { opacity: 0, x: 20 },

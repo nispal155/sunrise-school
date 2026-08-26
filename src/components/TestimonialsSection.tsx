@@ -101,7 +101,7 @@ export default function TestimonialsSection() {
           </div>
         </ScrollReveal>
 
-        <div className="relative h-[450px] w-full max-w-4xl mx-auto flex items-center justify-center perspective-1000">
+        <div className="relative h-[500px] w-full max-w-4xl mx-auto flex items-center justify-center perspective-1000">
           <AnimatePresence>
             {testimonials.map((testimonial, index) => {
               const { x, scale, zIndex, opacity, rotateY, isActive } = getCardProps(index);
@@ -124,21 +124,23 @@ export default function TestimonialsSection() {
                   dragConstraints={{ left: 0, right: 0 }}
                   dragElastic={1}
                   onDragEnd={isActive ? handleDragEnd : undefined}
-                  className={`absolute w-full max-w-md bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-border/50 flex flex-col h-[350px] cursor-grab active:cursor-grabbing`}
+                  className={`absolute w-full max-w-md bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-border/50 flex flex-col h-[420px] cursor-grab active:cursor-grabbing`}
                   style={{
                     transformOrigin: "center center",
                   }}
                 >
-                  <div className="mb-6 text-accent">
-                    <i className="fi fi-rr-quote-right text-5xl opacity-30"></i>
+                  <div className="mb-4 text-accent flex justify-center">
+                    <svg className="w-10 h-10 opacity-30" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                    </svg>
                   </div>
                   
-                  <p className="text-text-muted italic mb-8 flex-grow leading-relaxed text-lg">
+                  <p className="text-text-muted italic mb-6 flex-grow leading-relaxed text-base md:text-lg text-center overflow-y-auto hide-scrollbar">
                     "{testimonial.text}"
                   </p>
                   
-                  <div className="flex items-center gap-4 mt-auto">
-                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary relative overflow-hidden shrink-0">
+                  <div className="flex flex-col items-center gap-3 mt-auto pt-2 border-t border-border/50">
+                    <div className="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center text-primary relative overflow-hidden shrink-0 shadow-inner">
                       {testimonial.image ? (
                         <Image
                           src={testimonial.image}
@@ -147,12 +149,14 @@ export default function TestimonialsSection() {
                           className="object-cover"
                         />
                       ) : (
-                        <i className="fi fi-rr-user text-xl"></i>
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
                       )}
                     </div>
-                    <div>
-                      <h4 className="font-bold text-primary">{testimonial.name}</h4>
-                      <p className="text-sm text-accent font-medium">{testimonial.role}</p>
+                    <div className="text-center">
+                      <h4 className="font-bold text-primary text-lg leading-tight">{testimonial.name}</h4>
+                      <p className="text-sm text-accent font-semibold mt-0.5">{testimonial.role}</p>
                     </div>
                   </div>
                 </motion.div>
