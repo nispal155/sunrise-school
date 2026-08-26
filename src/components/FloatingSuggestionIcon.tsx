@@ -61,7 +61,8 @@ export default function FloatingSuggestionIcon() {
             src="/boy-icon.png" 
             alt="Suggestion Box"
             fill
-            sizes="(max-width: 768px) 80px, 96px"
+            sizes="(max-width: 768px) 256px, 384px"
+            quality={100}
             className="object-cover scale-[1.75] md:scale-[2] object-[50%_10%] mt-1 md:mt-2 pointer-events-none" 
           />
         </motion.div>
