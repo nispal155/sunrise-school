@@ -16,10 +16,10 @@ export default function FloatingSuggestionIcon() {
   }, []);
 
   return (
-    <div className="fixed bottom-0 left-2 md:left-8 z-50 flex items-end">
+    <div className="fixed bottom-4 left-4 md:bottom-8 md:left-8 z-50 flex items-end">
       
       {/* Speech Bubble container */}
-      <div className="relative mb-24 -mr-4 z-10 flex flex-col items-end pointer-events-none">
+      <div className="relative mb-16 -mr-4 md:mb-20 md:-mr-6 z-10 flex flex-col items-end pointer-events-none">
         <AnimatePresence>
           {(showMessage || isHovered) && (
             <motion.div 
@@ -45,7 +45,7 @@ export default function FloatingSuggestionIcon() {
         </AnimatePresence>
       </div>
 
-      {/* The Boy Character */}
+      {/* The Boy Character Profile */}
       <Link href="/suggestion-box" passHref>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -53,7 +53,7 @@ export default function FloatingSuggestionIcon() {
           whileHover={{ scale: 1.05, y: -5, rotate: -2 }}
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.4, type: "spring", bounce: 0.4 }}
-          className="relative w-28 h-36 md:w-40 md:h-48 cursor-pointer drop-shadow-2xl"
+          className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden shadow-2xl border-[3px] border-slate-950 ring-2 ring-yellow-500 cursor-pointer bg-slate-800"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -61,7 +61,7 @@ export default function FloatingSuggestionIcon() {
             src="/boy-icon.png" 
             alt="Suggestion Box"
             fill
-            className="object-contain object-bottom pointer-events-none" 
+            className="object-cover scale-[2.5] md:scale-[3] object-[50%_30%] pointer-events-none" 
           />
         </motion.div>
       </Link>
