@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import FloatingSuggestionIcon from "@/components/FloatingSuggestionIcon";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -31,6 +32,7 @@ export default function RootLayout({
         <main className="flex-grow">{children}</main>
         <Footer />
         <ScrollToTop />
+        <FloatingSuggestionIcon />
       </body>
     </html>
   );
