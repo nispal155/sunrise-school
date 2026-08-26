@@ -118,7 +118,7 @@ export default function Navbar() {
           <nav className="hidden lg:flex items-center space-x-5 xl:space-x-8">
             <Link
               href="/#hero"
-              className={`text-sm font-medium transition-colors hover:text-accent relative ${
+              className={`text-sm font-medium transition-colors hover:text-accent relative whitespace-nowrap ${
                 isSolid ? "text-text" : "text-white/90"
               }`}
             >
@@ -131,7 +131,7 @@ export default function Navbar() {
               onMouseLeave={() => setIsAboutDropdownOpen(false)}
             >
               <button
-                className={`text-sm font-medium transition-colors hover:text-accent relative flex items-center gap-1 ${
+                className={`text-sm font-medium transition-colors hover:text-accent relative flex items-center gap-1 whitespace-nowrap ${
                   isSolid ? "text-text" : "text-white/90"
                 }`}
               >
@@ -189,7 +189,7 @@ export default function Navbar() {
               onMouseLeave={() => setIsDropdownOpen(false)}
             >
               <button
-                className={`text-sm font-medium transition-colors hover:text-accent relative flex items-center gap-1 ${
+                className={`text-sm font-medium transition-colors hover:text-accent relative flex items-center gap-1 whitespace-nowrap ${
                   isSolid ? "text-text" : "text-white/90"
                 }`}
               >
@@ -245,7 +245,7 @@ export default function Navbar() {
 
             <Link
               href="/#news"
-              className={`text-sm font-medium transition-colors hover:text-accent relative ${
+              className={`text-sm font-medium transition-colors hover:text-accent relative whitespace-nowrap ${
                 isSolid ? "text-text" : "text-white/90"
               }`}
             >
@@ -253,7 +253,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="/calendar"
-              className={`text-sm font-medium transition-colors hover:text-accent relative ${
+              className={`text-sm font-medium transition-colors hover:text-accent relative whitespace-nowrap ${
                 isSolid ? "text-text" : "text-white/90"
               }`}
             >
@@ -261,7 +261,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="/#gallery"
-              className={`text-sm font-medium transition-colors hover:text-accent relative ${
+              className={`text-sm font-medium transition-colors hover:text-accent relative whitespace-nowrap ${
                 isSolid ? "text-text" : "text-white/90"
               }`}
             >
@@ -270,7 +270,7 @@ export default function Navbar() {
             <MagneticButton>
               <Link
                 href="/#contact"
-                className="text-sm font-medium transition-colors bg-accent hover:opacity-90 text-white px-6 py-2.5 rounded-full shadow-sm block"
+                className="text-sm font-medium transition-colors bg-accent hover:opacity-90 text-white px-6 py-2.5 rounded-full shadow-sm block whitespace-nowrap"
               >
                 Get in Touch
               </Link>
