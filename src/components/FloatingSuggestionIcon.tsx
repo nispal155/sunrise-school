@@ -1,29 +1,71 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
+import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function FloatingSuggestionIcon() {
+  const [isHovered, setIsHovered] = useState(false);
+  const [showMessage, setShowMessage] = useState(true);
+
+  // Hide the initial message after 8 seconds, but show it again on hover
+  useEffect(() => {
+    const timer = setTimeout(() => setShowMessage(false), 8000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <Link href="/suggestion-box" className="fixed bottom-6 left-6 md:bottom-10 md:left-10 z-50 group">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        transition={{ duration: 0.3 }}
-        className="relative p-4 bg-primary text-white rounded-full shadow-2xl hover:shadow-primary/30 transition-all border-2 border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer"
-        aria-label="Suggestion Box"
-      >
-        <i className="fi fi-rr-comment text-xl leading-none"></i>
-        
-        {/* Tooltip */}
-        <span className="absolute left-full ml-4 whitespace-nowrap bg-white text-text text-sm font-medium px-3 py-1.5 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0 pointer-events-none border border-border">
-          Suggestion Box
-          {/* Tooltip Arrow */}
-          <div className="absolute top-1/2 -left-1.5 -translate-y-1/2 w-3 h-3 bg-white border-l border-b border-border rotate-45"></div>
-        </span>
-      </motion.div>
-    </Link>
+    <div className="fixed bottom-0 left-2 md:left-8 z-50 flex items-end">
+      
+      {/* Speech Bubble container */}
+      <div className="relative mb-24 -mr-4 z-10 flex flex-col items-end pointer-events-none">
+        <AnimatePresence>
+          {(showMessage || isHovered) && (
+            <motion.div 
+              initial={{ opacity: 0, y: 10, scale: 0.8 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3, type: "spring", bounce: 0.5 }}
+              className="relative bg-slate-950 px-5 py-4 rounded-[24px] shadow-2xl border border-yellow-500 min-w-[200px]"
+              style={{ transformOrigin: "bottom right" }}
+            >
+              <div className="flex flex-col">
+                <span className="text-yellow-500 text-xs font-bold uppercase tracking-wider mb-1">
+                  Sunrise Buddy
+                </span>
+                <span className="text-white text-sm md:text-base font-medium">
+                  Psst... any suggestions? 💡
+                </span>
+              </div>
+              {/* Circular Tail matching the reference */}
+              <div className="absolute -bottom-2 right-4 w-5 h-5 bg-yellow-500 rounded-full border-[3px] border-slate-950"></div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* The Boy Character */}
+      <Link href="/suggestion-box" passHref>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.05, y: -5, rotate: -2 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.4, type: "spring", bounce: 0.4 }}
+          className="relative w-28 h-36 md:w-40 md:h-48 cursor-pointer drop-shadow-2xl"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <Image 
+            src="/boy-icon.png" 
+            alt="Suggestion Box"
+            fill
+            className="object-contain object-bottom pointer-events-none" 
+          />
+        </motion.div>
+      </Link>
+
+    </div>
   );
 }
