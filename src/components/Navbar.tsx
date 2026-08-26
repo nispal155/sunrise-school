@@ -71,8 +71,14 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo / Brand Name */}
           <Link href="/" className="flex-shrink-0 flex items-center gap-3">
-            <div className={`relative w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center overflow-hidden transition-colors duration-300 ${isSolid ? "bg-primary/10" : "bg-white/20 backdrop-blur-sm"}`}>
-              <Image src="/school-logo.jpeg" alt="Sunrise English Boarding School Logo" fill className="object-cover" />
+            <div className={`relative w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center overflow-hidden transition-colors duration-300 ${isSolid ? "bg-primary/10 shadow-sm" : "bg-white/20 backdrop-blur-sm"}`}>
+              <Image 
+                src="/school-logo.jpeg" 
+                alt="Sunrise English Boarding School Logo" 
+                fill 
+                sizes="(max-width: 768px) 48px, 64px"
+                className="object-cover" 
+              />
             </div>
             <span
               className={`font-bold text-xl md:text-2xl tracking-tight transition-colors duration-300 ${

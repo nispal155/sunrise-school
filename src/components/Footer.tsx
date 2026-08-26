@@ -11,8 +11,14 @@ export default function Footer() {
           {/* Column 1: Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden bg-white/10 shrink-0">
-                <Image src="/school-logo.jpeg" alt="Sunrise English Boarding School Logo" fill className="object-cover" />
+              <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-white/10 shrink-0 shadow-lg">
+                <Image 
+                  src="/school-logo.jpeg" 
+                  alt="Sunrise English Boarding School Logo" 
+                  fill 
+                  sizes="(max-width: 768px) 64px, 80px"
+                  className="object-cover" 
+                />
               </div>
               <h3 className="text-white text-xl md:text-2xl font-bold tracking-tight">
                 Sunrise English Boarding School
