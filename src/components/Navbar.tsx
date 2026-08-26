@@ -93,7 +93,7 @@ export default function Navbar() {
 
       <div className={`transition-all duration-300 ${isSolid ? "py-4" : "py-4 md:py-6"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4 xl:gap-8">
           {/* Logo / Brand Name */}
           <Link href="/" className="flex-shrink-0 flex items-center gap-3">
             <div className={`relative w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center overflow-hidden transition-colors duration-300 ${isSolid ? "bg-primary/10 shadow-sm" : "bg-white/20 backdrop-blur-sm"}`}>
@@ -106,16 +106,16 @@ export default function Navbar() {
               />
             </div>
             <span
-              className={`font-bold text-xl md:text-2xl tracking-tight transition-colors duration-300 ${
+              className={`font-bold text-lg xl:text-2xl tracking-tight transition-colors duration-300 whitespace-nowrap ${
                 isSolid ? "text-primary" : "text-white"
               } hidden sm:block`}
             >
-              Sunrise English Boarding School
+              Sunrise English<span className="hidden xl:inline"> Boarding School</span>
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-5 xl:space-x-8">
             <Link
               href="/#hero"
               className={`text-sm font-medium transition-colors hover:text-accent relative ${
@@ -252,6 +252,14 @@ export default function Navbar() {
               News & Events
             </Link>
             <Link
+              href="/calendar"
+              className={`text-sm font-medium transition-colors hover:text-accent relative ${
+                isSolid ? "text-text" : "text-white/90"
+              }`}
+            >
+              Calendar
+            </Link>
+            <Link
               href="/#gallery"
               className={`text-sm font-medium transition-colors hover:text-accent relative ${
                 isSolid ? "text-text" : "text-white/90"
@@ -270,7 +278,7 @@ export default function Navbar() {
           </nav>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden flex-shrink-0">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`p-2 transition-colors focus:outline-none ${
@@ -314,7 +322,7 @@ export default function Navbar() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className={`md:hidden shadow-xl border-t overflow-hidden ${mobileMenuBgClass}`}
+            className={`lg:hidden shadow-xl border-t overflow-hidden ${mobileMenuBgClass}`}
           >
             <div className="px-4 pt-2 pb-6 space-y-1">
               <Link
@@ -441,6 +449,13 @@ export default function Navbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 News & Events
+              </Link>
+              <Link
+                href="/calendar"
+                className={mobileItemClass}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Academic Calendar
               </Link>
               <Link
                 href="/#gallery"
