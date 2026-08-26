@@ -63,7 +63,7 @@ export default function FloatingSuggestionIcon() {
             fill
             sizes="(max-width: 768px) 256px, 384px"
             quality={100}
-            className="object-cover scale-[1.75] md:scale-[2] object-[50%_10%] mt-1 md:mt-2 pointer-events-none" 
+            className="object-cover scale-[1.6] md:scale-[1.85] origin-top object-top mt-1 pointer-events-none" 
           />
         </motion.div>
       </Link>
