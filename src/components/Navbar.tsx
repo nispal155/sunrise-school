@@ -37,6 +37,9 @@ export default function Navbar() {
       }
     };
 
+    // Check on mount to handle browser restoring scroll position
+    handleScroll();
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
