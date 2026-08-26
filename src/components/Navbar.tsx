@@ -127,21 +127,21 @@ export default function Navbar() {
                       About Us
                     </Link>
                     <Link
-                      href="/staff#teachers"
+                      href="/staff/teachers"
                       className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
                       onClick={() => setIsAboutDropdownOpen(false)}
                     >
                       Teachers
                     </Link>
                     <Link
-                      href="/staff#administration"
+                      href="/staff/administration"
                       className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
                       onClick={() => setIsAboutDropdownOpen(false)}
                     >
                       Administration
                     </Link>
                     <Link
-                      href="/staff#support-team"
+                      href="/staff/support-team"
                       className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
                       onClick={() => setIsAboutDropdownOpen(false)}
                     >
@@ -322,21 +322,21 @@ export default function Navbar() {
                         About Us
                       </Link>
                       <Link
-                        href="/staff#teachers"
+                        href="/staff/teachers"
                         className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Teachers
                       </Link>
                       <Link
-                        href="/staff#administration"
+                        href="/staff/administration"
                         className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Administration
                       </Link>
                       <Link
-                        href="/staff#support-team"
+                        href="/staff/support-team"
                         className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
