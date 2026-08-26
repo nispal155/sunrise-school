@@ -2,23 +2,16 @@
 
 import { motion } from "motion/react";
 
-const TEACHERS = [
-  { name: "Sita Devi", subject: "English" },
-  { name: "Hari Prasad", subject: "Mathematics" },
-  { name: "Gita Thapa", subject: "Science" },
-  { name: "Bikash Rai", subject: "Social Studies" },
-  { name: "Sarita Limbu", subject: "Nepali" },
-  { name: "Deepak Karki", subject: "Computer Science" },
-];
+import StaffCard from "@/components/StaffCard";
 
-const getInitials = (name: string) => {
-  return name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase()
-    .substring(0, 2);
-};
+const TEACHERS = [
+  { name: "Sita Devi", subject: "English", image: "https://i.pravatar.cc/300?u=sitadevi" },
+  { name: "Hari Prasad", subject: "Mathematics", image: "https://i.pravatar.cc/300?u=hariprasad" },
+  { name: "Gita Thapa", subject: "Science", image: "https://i.pravatar.cc/300?u=gitathapa" },
+  { name: "Bikash Rai", subject: "Social Studies", image: "https://i.pravatar.cc/300?u=bikashrai" },
+  { name: "Sarita Limbu", subject: "Nepali", image: "https://i.pravatar.cc/300?u=saritalimbu" },
+  { name: "Deepak Karki", subject: "Computer Science", image: "https://i.pravatar.cc/300?u=deepakkarki" },
+];
 
 export default function TeachersPage() {
   return (
@@ -37,26 +30,17 @@ export default function TeachersPage() {
         </div>
 
         {/* Teachers Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {TEACHERS.map((teacher, index) => (
-              <div key={index} className="bg-white rounded-2xl p-6 shadow-sm border border-border flex items-center gap-4 transition-transform hover:-translate-y-1 hover:shadow-md">
-                <div className="w-14 h-14 shrink-0 rounded-full bg-primary/10 text-primary font-bold flex items-center justify-center text-lg">
-                  {getInitials(teacher.name)}
-                </div>
-                <div>
-                  <h3 className="font-bold text-text text-lg">{teacher.name}</h3>
-                  <p className="text-text-muted text-sm">{teacher.subject}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.section>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {TEACHERS.map((teacher, index) => (
+            <StaffCard 
+              key={index} 
+              name={teacher.name} 
+              role={teacher.subject} 
+              image={teacher.image}
+              delay={index}
+            />
+          ))}
+        </div>
 
       </div>
     </div>
