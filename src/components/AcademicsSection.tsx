@@ -60,7 +60,7 @@ const cardVariants = {
 
 export default function AcademicsSection() {
   return (
-    <section id="academics" className="py-24 bg-white relative overflow-hidden">
+    <section id="academics" className="py-24 bg-slate-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <ScrollReveal delay={0}>
@@ -92,21 +92,24 @@ export default function AcademicsSection() {
               <motion.div
                 key={index}
                 variants={cardVariants}
-                className="bg-primary rounded-2xl p-8 shadow-md flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
+                className="bg-white rounded-[2rem] p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(30,58,95,0.08)] group relative overflow-hidden"
               >
-                <div className="mb-6 inline-flex items-center justify-center p-3 rounded-xl bg-white/5 group-hover:bg-accent/10 transition-colors">
-                  <i className={`${program.icon} text-3xl text-accent`}></i>
+                {/* Decorative background element */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-accent/20 to-transparent rounded-bl-full -z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0"></div>
+                
+                <div className="relative z-10 mb-8 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/5 text-primary group-hover:bg-primary group-hover:text-accent transition-all duration-500 shadow-sm group-hover:shadow-md">
+                  <i className={`${program.icon} text-3xl transition-transform duration-500 group-hover:scale-110`}></i>
                 </div>
                 
-                <h4 className="text-2xl font-bold text-white mb-2">{program.title}</h4>
-                <div className="mb-6">
-                  <span className="text-sm font-semibold text-primary bg-accent px-3 py-1 rounded">{program.grades}</span>
+                <h4 className="relative z-10 text-2xl font-bold text-primary mb-3 transition-colors duration-300">{program.title}</h4>
+                <div className="relative z-10 mb-6">
+                  <span className="text-xs font-bold uppercase tracking-wider text-primary bg-accent/20 px-3 py-1.5 rounded-full border border-accent/30">{program.grades}</span>
                 </div>
                 
-                <ul className="space-y-3 flex-grow">
+                <ul className="relative z-10 space-y-3 flex-grow">
                   {program.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3 text-white/90 text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                    <li key={i} className="flex items-start gap-3 text-text-muted text-sm leading-relaxed">
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300" />
                       {feature}
                     </li>
                   ))}
