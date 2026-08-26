@@ -97,20 +97,6 @@ export default function AboutSection() {
           })}
         </motion.div>
 
-        <ScrollReveal delay={4}>
-          <div className="flex justify-center mt-16">
-            <Link href="/staff">
-              <motion.button
-                whileHover={{ scale: 1.05, backgroundColor: "var(--color-primary)", color: "#ffffff" }}
-                whileTap={{ scale: 0.97 }}
-                className="px-8 py-3.5 rounded-full border-2 border-primary text-primary font-semibold text-base transition-colors duration-300 inline-flex items-center gap-2"
-              >
-                <i className="fi fi-rr-users text-lg leading-none"></i>
-                View Staffs
-              </motion.button>
-            </Link>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   );
