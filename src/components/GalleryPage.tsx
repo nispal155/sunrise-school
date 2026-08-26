@@ -1,75 +1,113 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
-import ScrollReveal from "./ScrollReveal";
-import AnimatedText from "./AnimatedText";
 
-const galleryImages = [
+type Category = "All" | "Examination" | "Tour" | "Sports" | "Events";
+
+interface GalleryImage {
+  id: number;
+  src: string;
+  category: "Examination" | "Tour" | "Sports" | "Events";
+  altText: string;
+}
+
+const CATEGORIES: Category[] = ["All", "Examination", "Tour", "Sports", "Events"];
+
+const GALLERY_DATA: GalleryImage[] = [
   {
     id: 1,
-    title: "Morning Assembly",
     src: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800",
-    className: "md:col-span-2 md:row-span-2",
+    category: "Examination",
+    altText: "Students focused during final examinations",
   },
   {
     id: 2,
-    title: "Science Laboratory",
     src: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800",
-    className: "md:col-span-1 md:row-span-1",
+    category: "Examination",
+    altText: "Science practical exams in the laboratory",
   },
   {
     id: 3,
-    title: "Library & Reading",
-    src: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800",
-    className: "md:col-span-1 md:row-span-1",
+    src: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800",
+    category: "Examination",
+    altText: "Writing the final board exams",
   },
   {
     id: 4,
-    title: "Cultural Dance Performance",
-    src: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200",
-    className: "md:col-span-2 md:row-span-1",
-    featured: true,
+    src: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800",
+    category: "Tour",
+    altText: "Educational tour to the historical museum",
   },
   {
     id: 5,
-    title: "Sports Day",
-    src: "https://images.unsplash.com/photo-1461896836934-ffe145ab64c1?q=80&w=800",
-    className: "md:col-span-1 md:row-span-2",
+    src: "https://images.unsplash.com/photo-1504609774514-cbac78c139c8?q=80&w=800",
+    category: "Tour",
+    altText: "Students exploring nature during the annual hike",
   },
   {
     id: 6,
-    title: "Classroom Learning",
-    src: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800",
-    className: "md:col-span-1 md:row-span-1",
+    src: "https://images.unsplash.com/photo-1544365558-35aa4afcf11f?q=80&w=800",
+    category: "Tour",
+    altText: "Group photo at the botanical garden",
   },
   {
     id: 7,
-    title: "Art & Creativity",
-    src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=800",
-    className: "md:col-span-1 md:row-span-1",
+    src: "https://images.unsplash.com/photo-1461896836934-ffe145ab64c1?q=80&w=800",
+    category: "Sports",
+    altText: "Annual sports day track events",
   },
   {
     id: 8,
-    title: "Campus Life",
-    src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800",
-    className: "md:col-span-2 md:row-span-1",
+    src: "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=800",
+    category: "Sports",
+    altText: "Inter-house football tournament finals",
+  },
+  {
+    id: 9,
+    src: "https://images.unsplash.com/photo-1526676037777-05a232554f77?q=80&w=800",
+    category: "Sports",
+    altText: "Basketball practice session after school",
+  },
+  {
+    id: 10,
+    src: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=800",
+    category: "Events",
+    altText: "Cultural dance performance at the annual function",
+  },
+  {
+    id: 11,
+    src: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=800",
+    category: "Events",
+    altText: "Parents day celebration and prize distribution",
+  },
+  {
+    id: 12,
+    src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=800",
+    category: "Events",
+    altText: "Art exhibition showcasing student creativity",
   },
 ];
 
 export default function GalleryPage() {
+  const [activeCategory, setActiveCategory] = useState<Category>("All");
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const filteredImages = useMemo(() => {
+    if (activeCategory === "All") return GALLERY_DATA;
+    return GALLERY_DATA.filter((img) => img.category === activeCategory);
+  }, [activeCategory]);
 
   const handleNext = useCallback((e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    setSelectedIndex((prev) => (prev !== null ? (prev + 1) % galleryImages.length : null));
-  }, []);
+    setSelectedIndex((prev) => (prev !== null ? (prev + 1) % filteredImages.length : null));
+  }, [filteredImages.length]);
 
   const handlePrev = useCallback((e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    setSelectedIndex((prev) => (prev !== null ? (prev - 1 + galleryImages.length) % galleryImages.length : null));
-  }, []);
+    setSelectedIndex((prev) => (prev !== null ? (prev - 1 + filteredImages.length) % filteredImages.length : null));
+  }, [filteredImages.length]);
 
   // Keyboard navigation
   const handleKeyDown = useCallback(
@@ -100,56 +138,70 @@ export default function GalleryPage() {
   }, [selectedIndex]);
 
   return (
-    <section id="gallery" className="py-24 bg-bg relative">
+    <section id="gallery" className="bg-bg py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <AnimatedText
-            text="Our Gallery: Capturing Quality Education in Nepal"
-            className="text-4xl md:text-5xl font-bold text-primary mb-6"
-          />
-          <ScrollReveal delay={3}>
-            <p className="text-lg text-text">
-              Take a glimpse into the vibrant campus life, dedicated academics, and
-              extracurricular excellence at Sunrise English Boarding School.
-            </p>
-          </ScrollReveal>
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+            Photo Gallery
+          </h1>
+          {/* Decorative blue underline */}
+          <div className="w-16 h-1 bg-blue-600 mx-auto rounded-full mb-4" />
+          <p className="text-base md:text-lg text-gray-500">
+            Capturing moments and memories from our school life
+          </p>
         </div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[250px] gap-6">
-          {galleryImages.map((image, index) => (
-            <ScrollReveal
-              key={image.id}
-              delay={index + 2}
-              className={`relative overflow-hidden rounded-xl bg-gray-100 ${image.className}`}
+        {/* Filter Tabs */}
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-12">
+          {CATEGORIES.map((category) => (
+            <button
+              key={category}
+              onClick={() => {
+                setActiveCategory(category);
+                setSelectedIndex(null); // Reset lightbox if open
+              }}
+              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-colors ${
+                activeCategory === category
+                  ? "bg-blue-600 text-white shadow-md"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
             >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        {/* Photo Grid */}
+        <motion.div layout className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          <AnimatePresence mode="popLayout">
+            {filteredImages.map((image, index) => (
               <motion.div
-                layoutId={`gallery-image-${image.id}`}
-                className="w-full h-full relative cursor-pointer group"
+                layout
+                key={image.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="relative aspect-square overflow-hidden rounded-xl bg-gray-100 cursor-pointer group"
                 onClick={() => setSelectedIndex(index)}
               >
                 <Image
                   src={image.src}
-                  alt={image.title}
+                  alt={image.altText}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
-
-                {/* Overlay */}
+                {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/40 transition-colors duration-500" />
-
-                {/* Title on Hover */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <h3 className="text-white font-semibold text-xl md:text-2xl tracking-wide text-center px-4 drop-shadow-md">
-                    {image.title}
-                  </h3>
+                <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-gradient-to-t from-primary/80 to-transparent">
+                  <p className="text-white text-sm font-medium line-clamp-2">{image.altText}</p>
                 </div>
               </motion.div>
-            </ScrollReveal>
-          ))}
-        </div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
 
       {/* Lightbox Modal */}
@@ -158,24 +210,24 @@ export default function GalleryPage() {
           <div className="fixed inset-0 z-[100] flex items-center justify-center">
             {/* Blurred Background Overlay */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer"
-              onClick={() => setSelectedIndex(null)}
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+               transition={{ duration: 0.3 }}
+               className="absolute inset-0 bg-black/85 backdrop-blur-xl cursor-pointer"
+               onClick={() => setSelectedIndex(null)}
             />
 
             {/* Modal Content */}
             <motion.div
-              layoutId={`gallery-image-${galleryImages[selectedIndex].id}`}
-              className="relative w-[90vw] h-[80vh] md:w-[85vw] md:h-[85vh] z-10 flex items-center justify-center pointer-events-none"
+              layoutId={`gallery-image-${filteredImages[selectedIndex].id}`}
+              className="relative w-[95vw] h-[80vh] md:w-[85vw] md:h-[85vh] z-10 flex items-center justify-center pointer-events-none"
             >
               <Image
-                src={galleryImages[selectedIndex].src}
-                alt={galleryImages[selectedIndex].title}
+                src={filteredImages[selectedIndex].src}
+                alt={filteredImages[selectedIndex].altText}
                 fill
-                className="object-contain pointer-events-auto shadow-2xl"
+                className="object-contain pointer-events-auto"
                 sizes="100vw"
                 priority
               />
@@ -186,10 +238,13 @@ export default function GalleryPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ delay: 0.2 }}
-                className="absolute -bottom-12 left-0 right-0 text-center pointer-events-auto"
+                className="absolute -bottom-16 left-0 right-0 text-center pointer-events-auto flex flex-col items-center gap-2"
               >
-                <span className="text-white text-lg md:text-xl font-medium tracking-wide drop-shadow-lg">
-                  {galleryImages[selectedIndex].title}
+                <span className="text-white text-sm md:text-base font-medium tracking-wide drop-shadow-lg max-w-2xl px-4">
+                  {filteredImages[selectedIndex].altText}
+                </span>
+                <span className="text-white/50 text-xs tracking-widest uppercase">
+                  {selectedIndex + 1} / {filteredImages.length}
                 </span>
               </motion.div>
             </motion.div>
@@ -199,28 +254,24 @@ export default function GalleryPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 z-20 pointer-events-none flex items-center justify-between px-4 md:px-8"
+              className="absolute inset-0 z-20 pointer-events-none flex items-center justify-between px-2 md:px-8"
             >
               {/* Prev Button */}
               <button
                 onClick={handlePrev}
-                className="pointer-events-auto p-3 md:p-4 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200 focus:outline-none backdrop-blur-sm"
+                className="pointer-events-auto p-3 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200 focus:outline-none"
                 aria-label="Previous image"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 md:w-10 md:h-10">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                </svg>
+                <i className="fi fi-rr-angle-left text-2xl md:text-4xl"></i>
               </button>
 
               {/* Next Button */}
               <button
                 onClick={handleNext}
-                className="pointer-events-auto p-3 md:p-4 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200 focus:outline-none backdrop-blur-sm"
+                className="pointer-events-auto p-3 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200 focus:outline-none"
                 aria-label="Next image"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 md:w-10 md:h-10">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
+                <i className="fi fi-rr-angle-right text-2xl md:text-4xl"></i>
               </button>
             </motion.div>
 
@@ -230,12 +281,10 @@ export default function GalleryPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedIndex(null)}
-              className="absolute top-4 right-4 md:top-8 md:right-8 z-30 p-3 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200 focus:outline-none backdrop-blur-sm"
+              className="absolute top-4 right-4 md:top-8 md:right-8 z-30 p-3 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200 focus:outline-none"
               aria-label="Close modal"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 md:w-10 md:h-10">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <i className="fi fi-rr-cross text-xl md:text-2xl"></i>
             </motion.button>
           </div>
         )}

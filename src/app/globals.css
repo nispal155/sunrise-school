@@ -11,7 +11,7 @@
   --color-text-muted: #6b7280;
   --color-border: #e5e7eb;
 
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-poppins);
 
   --animate-marquee: marquee 30s linear infinite;
 

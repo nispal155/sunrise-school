@@ -137,6 +137,20 @@ export default function Navbar() {
                     >
                       Past Questions
                     </Link>
+                    <Link
+                      href="/academics/scholarship"
+                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      onClick={() => setIsDropdownOpen(false)}
+                    >
+                      Scholarship
+                    </Link>
+                    <Link
+                      href="/academics/fee-structure"
+                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      onClick={() => setIsDropdownOpen(false)}
+                    >
+                      Fee Structure
+                    </Link>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -264,6 +278,20 @@ export default function Navbar() {
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Past Questions
+                      </Link>
+                      <Link
+                        href="/academics/scholarship"
+                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Scholarship
+                      </Link>
+                      <Link
+                        href="/academics/fee-structure"
+                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Fee Structure
                       </Link>
                     </motion.div>
                   )}
