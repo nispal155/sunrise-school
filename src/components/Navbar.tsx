@@ -28,6 +28,30 @@ export default function Navbar() {
   // On other pages (which have white backgrounds), it must always be solid.
   const isSolid = scrolled || pathname !== "/";
 
+  const dropdownBgClass = isSolid 
+    ? "bg-white border-border" 
+    : "bg-primary/95 backdrop-blur-md border-white/10";
+  
+  const dropdownItemClass = `block px-4 py-2 text-sm transition-colors ${
+    isSolid ? "text-text hover:bg-bg-alt hover:text-primary" : "text-white/90 hover:bg-white/10 hover:text-white"
+  }`;
+
+  const mobileMenuBgClass = isSolid
+    ? "bg-white border-border"
+    : "bg-primary/95 backdrop-blur-md border-white/10";
+
+  const mobileItemClass = `block px-3 py-3 text-base font-medium rounded-md transition-colors ${
+    isSolid ? "text-text hover:bg-bg-alt hover:text-primary" : "text-white/90 hover:bg-white/10 hover:text-white"
+  }`;
+
+  const mobileButtonClass = `w-full flex items-center justify-between px-3 py-3 text-base font-medium rounded-md transition-colors ${
+    isSolid ? "text-text hover:bg-bg-alt hover:text-primary" : "text-white/90 hover:bg-white/10 hover:text-white"
+  }`;
+
+  const mobileSubItemClass = `block px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+    isSolid ? "text-text-muted hover:bg-bg-alt hover:text-primary" : "text-white/70 hover:bg-white/10 hover:text-white"
+  }`;
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -123,32 +147,32 @@ export default function Navbar() {
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl py-2 border border-border overflow-hidden"
+                    className={`absolute top-full left-0 mt-2 w-48 rounded-xl shadow-xl py-2 border overflow-hidden ${dropdownBgClass}`}
                   >
                     <Link
                       href="/#about"
-                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      className={dropdownItemClass}
                       onClick={() => setIsAboutDropdownOpen(false)}
                     >
                       About Us
                     </Link>
                     <Link
                       href="/staff/teachers"
-                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      className={dropdownItemClass}
                       onClick={() => setIsAboutDropdownOpen(false)}
                     >
                       Teachers
                     </Link>
                     <Link
                       href="/staff/administration"
-                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      className={dropdownItemClass}
                       onClick={() => setIsAboutDropdownOpen(false)}
                     >
                       Administration
                     </Link>
                     <Link
                       href="/staff/support-team"
-                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      className={dropdownItemClass}
                       onClick={() => setIsAboutDropdownOpen(false)}
                     >
                       Support Team
@@ -181,32 +205,32 @@ export default function Navbar() {
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl py-2 border border-border overflow-hidden"
+                    className={`absolute top-full left-0 mt-2 w-48 rounded-xl shadow-xl py-2 border overflow-hidden ${dropdownBgClass}`}
                   >
                     <Link
                       href="/#academics"
-                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      className={dropdownItemClass}
                       onClick={() => setIsDropdownOpen(false)}
                     >
                       Academic Programs
                     </Link>
                     <Link
                       href="/past-questions"
-                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      className={dropdownItemClass}
                       onClick={() => setIsDropdownOpen(false)}
                     >
                       Past Questions
                     </Link>
                     <Link
                       href="/academics/scholarship"
-                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      className={dropdownItemClass}
                       onClick={() => setIsDropdownOpen(false)}
                     >
                       Scholarship
                     </Link>
                     <Link
                       href="/academics/fee-structure"
-                      className="block px-4 py-2 text-sm text-text hover:bg-bg-alt hover:text-primary transition-colors"
+                      className={dropdownItemClass}
                       onClick={() => setIsDropdownOpen(false)}
                     >
                       Fee Structure
@@ -287,19 +311,19 @@ export default function Navbar() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="md:hidden bg-white shadow-xl border-t border-border overflow-hidden"
+            className={`md:hidden shadow-xl border-t overflow-hidden ${mobileMenuBgClass}`}
           >
             <div className="px-4 pt-2 pb-6 space-y-1">
               <Link
                 href="/#hero"
-                className="block px-3 py-3 text-base font-medium rounded-md transition-colors text-text hover:text-primary hover:bg-bg-alt"
+                className={mobileItemClass}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
               </Link>
               <div className="space-y-1">
                 <button
-                  className="w-full flex items-center justify-between px-3 py-3 text-base font-medium rounded-md transition-colors text-text hover:text-primary hover:bg-bg-alt"
+                  className={mobileButtonClass}
                   onClick={() => setIsAboutDropdownOpen(!isAboutDropdownOpen)}
                 >
                   About Us
@@ -322,28 +346,28 @@ export default function Navbar() {
                     >
                       <Link
                         href="/#about"
-                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        className={mobileSubItemClass}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         About Us
                       </Link>
                       <Link
                         href="/staff/teachers"
-                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        className={mobileSubItemClass}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Teachers
                       </Link>
                       <Link
                         href="/staff/administration"
-                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        className={mobileSubItemClass}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Administration
                       </Link>
                       <Link
                         href="/staff/support-team"
-                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        className={mobileSubItemClass}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Support Team
@@ -354,7 +378,7 @@ export default function Navbar() {
               </div>
               <div className="space-y-1">
                 <button
-                  className="w-full flex items-center justify-between px-3 py-3 text-base font-medium rounded-md transition-colors text-text hover:text-primary hover:bg-bg-alt"
+                  className={mobileButtonClass}
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 >
                   Academics
@@ -377,28 +401,28 @@ export default function Navbar() {
                     >
                       <Link
                         href="/#academics"
-                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        className={mobileSubItemClass}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Academic Programs
                       </Link>
                       <Link
                         href="/past-questions"
-                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        className={mobileSubItemClass}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Past Questions
                       </Link>
                       <Link
                         href="/academics/scholarship"
-                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        className={mobileSubItemClass}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Scholarship
                       </Link>
                       <Link
                         href="/academics/fee-structure"
-                        className="block px-3 py-2 text-sm font-medium rounded-md transition-colors text-text-muted hover:text-primary hover:bg-bg-alt"
+                        className={mobileSubItemClass}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Fee Structure
@@ -410,14 +434,14 @@ export default function Navbar() {
 
               <Link
                 href="/#news"
-                className="block px-3 py-3 text-base font-medium rounded-md transition-colors text-text hover:text-primary hover:bg-bg-alt"
+                className={mobileItemClass}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 News & Events
               </Link>
               <Link
                 href="/#gallery"
-                className="block px-3 py-3 text-base font-medium rounded-md transition-colors text-text hover:text-primary hover:bg-bg-alt"
+                className={mobileItemClass}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Gallery
