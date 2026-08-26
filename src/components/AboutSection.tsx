@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
+import TextReveal from "./TextReveal";
 import { motion } from "motion/react";
 import Link from "next/link";
 
@@ -52,16 +54,19 @@ export default function AboutSection() {
     <section id="about" className="py-24 bg-bg relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <ScrollReveal delay={0}>
-            <h2 className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">
-              Why Choose Us
-            </h2>
+          <ScrollReveal>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="w-12 h-px bg-accent"></div>
+              <h2 className="text-sm font-bold text-accent uppercase tracking-wider">
+                Why Choose Us
+              </h2>
+              <div className="w-12 h-px bg-accent"></div>
+            </div>
           </ScrollReveal>
-          <ScrollReveal delay={1}>
-            <h3 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-              Commitment to Excellence
-            </h3>
-          </ScrollReveal>
+          <TextReveal 
+            text="Commitment to Excellence" 
+            className="text-3xl md:text-5xl font-bold text-primary mb-6"
+          />
           <ScrollReveal delay={2}>
             <p className="text-text-muted text-lg leading-relaxed">
               At Sunrise English Boarding School, we believe in authentic learning.

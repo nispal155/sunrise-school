@@ -1,15 +1,24 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import AnimatedText from "./AnimatedText";
 import Link from "next/link";
 import Image from "next/image";
+import MagneticButton from "./MagneticButton";
 
 export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
   return (
-    <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-primary pt-20">
+    <section ref={sectionRef} id="hero" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-primary pt-20">
       {/* Background Image & Overlay */}
-      <div className="absolute inset-0 z-0">
+      <motion.div className="absolute inset-0 z-0" style={{ y: backgroundY }}>
         <Image
           src="/landing.jpeg"
           alt="Sunrise English Boarding School Campus"
@@ -21,7 +30,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-primary/70 mix-blend-multiply" />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/50 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-90" />
-      </div>
+      </motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center mt-10">
 
@@ -51,25 +60,29 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
           className="flex flex-col sm:flex-row items-center gap-5 mb-16"
         >
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
-            <Link
-              href="/#admissions"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-primary bg-white rounded-full shadow-xl hover:bg-bg-alt transition-colors duration-300"
-            >
-              <i className="fi fi-rr-document-signed text-lg leading-none"></i>
-              Admissions Open
-            </Link>
-          </motion.div>
+          <MagneticButton>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+              <Link
+                href="/#admissions"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-primary bg-white rounded-full shadow-xl hover:bg-bg-alt transition-colors duration-300"
+              >
+                <i className="fi fi-rr-document-signed text-lg leading-none"></i>
+                Admissions Open
+              </Link>
+            </motion.div>
+          </MagneticButton>
           
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
-            <Link
-              href="/#contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-white bg-accent rounded-full shadow-lg hover:bg-accent-light border border-transparent transition-colors duration-300"
-            >
-              <i className="fi fi-rr-headset text-lg leading-none"></i>
-              Contact Us
-            </Link>
-          </motion.div>
+          <MagneticButton>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+              <Link
+                href="/#contact"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-white bg-accent rounded-full shadow-lg hover:bg-accent-light border border-transparent transition-colors duration-300"
+              >
+                <i className="fi fi-rr-headset text-lg leading-none"></i>
+                Contact Us
+              </Link>
+            </motion.div>
+          </MagneticButton>
         </motion.div>
         
         {/* Glassmorphic Stats/Features Row */}

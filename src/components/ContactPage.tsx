@@ -247,8 +247,8 @@ export default function ContactPage() {
               </ul>
             </div>
 
-            {/* Map Embed */}
-            <div className="w-full h-64 rounded-xl overflow-hidden border border-border shadow-sm mb-4">
+            {/* Map Embed & Get Directions */}
+            <div className="w-full h-80 rounded-xl overflow-hidden border border-border shadow-sm mb-4 relative">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d633.3856961695469!2d87.29882460407428!3d26.68097300898896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ef6b36fc844ef3%3A0xca75e796eb8e3057!2z4aSb4aSj4aSY4aSg4aSW4aSlIFN1bnJpc2UgRW5nbGlzaCBCb2FyZGluZyBTY2hv!5e0!3m2!1sen!2snp!4v1787639186070!5m2!1sen!2snp"
                 width="100%"
@@ -259,18 +259,22 @@ export default function ContactPage() {
                 referrerPolicy="strict-origin-when-cross-origin"
                 title="Sunrise English Boarding School Location"
               ></iframe>
-            </div>
 
-            {/* Get Directions Button */}
-            <a 
-              href="https://www.google.com/maps/dir/?api=1&destination=Sunrise+English+Boarding+School%2C+Itahari%2C+Nepal"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-full gap-2 bg-primary/10 text-primary font-semibold py-3 px-6 rounded-xl hover:bg-primary hover:text-white transition-colors border border-primary/20 shadow-sm"
-            >
-              <i className="fi fi-rr-marker text-lg leading-none"></i>
-              Get Directions to School
-            </a>
+              <div className="absolute top-4 left-4 right-4 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-md border border-border/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                  <h4 className="font-bold text-primary text-sm">Sunrise English Boarding School</h4>
+                  <p className="text-xs text-text-muted">Itahari-3, Baukajhoda</p>
+                </div>
+                <a 
+                  href="https://www.google.com/maps/dir/?api=1&destination=Sunrise+English+Boarding+School%2C+Itahari%2C+Nepal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-accent hover:bg-accent/90 text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors flex items-center gap-2 whitespace-nowrap"
+                >
+                  <i className="fi fi-rr-marker"></i> Get Directions
+                </a>
+              </div>
+            </div>
 
           </ScrollReveal>
         </div>

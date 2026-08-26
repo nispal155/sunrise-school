@@ -161,19 +161,18 @@ export default function GalleryPage() {
                 setActiveCategory(category);
                 setSelectedIndex(null); // Reset lightbox if open
               }}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-colors ${
-                activeCategory === category
+              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-colors ${activeCategory === category
                   ? "bg-blue-600 text-white shadow-md"
                   : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
+                }`}
             >
               {category}
             </button>
           ))}
         </div>
 
-        {/* Photo Grid */}
-        <motion.div layout className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        {/* Masonry Gallery Grid */}
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
           <AnimatePresence mode="popLayout">
             {filteredImages.map((image, index) => (
               <motion.div
@@ -183,15 +182,15 @@ export default function GalleryPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="relative aspect-square overflow-hidden rounded-xl bg-gray-100 cursor-pointer group"
+                className="relative break-inside-avoid overflow-hidden rounded-xl bg-gray-100 cursor-pointer group"
                 onClick={() => setSelectedIndex(index)}
               >
                 <Image
                   src={image.src}
                   alt={image.altText}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  width={600}
+                  height={image.id % 2 === 0 ? 800 : 500}
+                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/40 transition-colors duration-500" />
@@ -210,12 +209,12 @@ export default function GalleryPage() {
           <div className="fixed inset-0 z-[100] flex items-center justify-center">
             {/* Blurred Background Overlay */}
             <motion.div
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 1 }}
-               exit={{ opacity: 0 }}
-               transition={{ duration: 0.3 }}
-               className="absolute inset-0 bg-black/85 backdrop-blur-xl cursor-pointer"
-               onClick={() => setSelectedIndex(null)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 bg-black/85 backdrop-blur-xl cursor-pointer"
+              onClick={() => setSelectedIndex(null)}
             />
 
             {/* Modal Content */}
@@ -231,7 +230,7 @@ export default function GalleryPage() {
                 sizes="100vw"
                 priority
               />
-              
+
               {/* Image Title in Modal */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}

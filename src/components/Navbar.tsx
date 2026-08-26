@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
+import MagneticButton from "./MagneticButton";
 
 const dropdownVariants = {
   hidden: { opacity: 0, y: -10 },
@@ -258,12 +259,14 @@ export default function Navbar() {
             >
               Gallery
             </Link>
-            <Link
-              href="/#contact"
-              className="text-sm font-medium transition-colors bg-accent hover:opacity-90 text-white px-6 py-2.5 rounded-full shadow-sm"
-            >
-              Get in Touch
-            </Link>
+            <MagneticButton>
+              <Link
+                href="/#contact"
+                className="text-sm font-medium transition-colors bg-accent hover:opacity-90 text-white px-6 py-2.5 rounded-full shadow-sm block"
+              >
+                Get in Touch
+              </Link>
+            </MagneticButton>
           </nav>
 
           {/* Mobile menu button */}

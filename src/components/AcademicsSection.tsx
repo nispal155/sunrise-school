@@ -1,6 +1,7 @@
 "use client";
 
 import ScrollReveal from "./ScrollReveal";
+import TextReveal from "./TextReveal";
 import { motion } from "motion/react";
 
 const ACADEMIC_PROGRAMS = [
@@ -62,16 +63,17 @@ export default function AcademicsSection() {
   return (
     <section id="academics" className="py-24 bg-slate-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <ScrollReveal delay={0}>
             <h2 className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">
               Academics
             </h2>
           </ScrollReveal>
-          <ScrollReveal delay={1}>
-            <h3 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-              Academic Programs
-            </h3>
+          <ScrollReveal delay={0.2}>
+            <TextReveal 
+              text="Academic Programs" 
+              className="text-3xl md:text-4xl font-bold text-primary mb-6"
+            />
           </ScrollReveal>
           <ScrollReveal delay={2}>
             <p className="text-text-muted text-lg leading-relaxed">

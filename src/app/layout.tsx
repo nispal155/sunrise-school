@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import FloatingSuggestionIcon from "@/components/FloatingSuggestionIcon";
+import MouseGlow from "@/components/MouseGlow";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -28,6 +29,7 @@ export default function RootLayout({
         <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css' />
       </head>
       <body className="min-h-full flex flex-col font-sans">
+        <MouseGlow />
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
