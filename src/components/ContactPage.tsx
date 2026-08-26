@@ -226,21 +226,14 @@ export default function ContactPage() {
                 <li className="flex items-center justify-between border-b border-border pb-3">
                   <div className="flex items-center gap-3 text-text font-medium">
                     <i className="fi fi-rr-clock text-xl text-accent"></i>
-                    Sunday - Thursday
+                    Monday - Friday
                   </div>
                   <span className="text-text-muted">10:00 AM - 4:00 PM</span>
-                </li>
-                <li className="flex items-center justify-between border-b border-border pb-3">
-                  <div className="flex items-center gap-3 text-text font-medium">
-                    <i className="fi fi-rr-clock text-xl text-accent"></i>
-                    Friday
-                  </div>
-                  <span className="text-text-muted">10:00 AM - 1:00 PM</span>
                 </li>
                 <li className="flex items-center justify-between pb-3">
                   <div className="flex items-center gap-3 text-text font-medium">
                     <i className="fi fi-rr-clock text-xl text-accent"></i>
-                    Saturday
+                    Saturday - Sunday
                   </div>
                   <span className="text-red-500 font-medium">Closed</span>
                 </li>

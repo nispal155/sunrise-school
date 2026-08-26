@@ -4,19 +4,28 @@ import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, MapPin, Clock, Calendar as CalendarIcon, Info } from "lucide-react";
 import { AcademicEvent, getCategoryInfo } from "@/data/academicEvents";
+import NepaliDate from "nepali-datetime";
+import type { CalendarType } from "./AcademicCalendar";
 
 interface CalendarEventModalProps {
   isOpen: boolean;
   onClose: () => void;
   selectedDate: Date | null;
   events: AcademicEvent[];
+  calendarType?: CalendarType;
 }
+
+const NEPALI_MONTHS = [
+  "Baisakh", "Jestha", "Ashadh", "Shrawan", "Bhadra", "Ashwin", 
+  "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"
+];
 
 export default function CalendarEventModal({
   isOpen,
   onClose,
   selectedDate,
   events,
+  calendarType = "AD",
 }: CalendarEventModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -45,12 +54,27 @@ export default function CalendarEventModal({
 
   if (!isOpen || !selectedDate) return null;
 
-  const formattedDate = selectedDate.toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  let formattedDate = "";
+  if (calendarType === "AD") {
+    formattedDate = selectedDate.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  } else {
+    try {
+      const bsDate = new NepaliDate(selectedDate);
+      formattedDate = `${bsDate.format("dddd")}, ${NEPALI_MONTHS[bsDate.getMonth()]} ${bsDate.getDate()}, ${bsDate.getYear()}`;
+    } catch(e) {
+      formattedDate = selectedDate.toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    }
+  }
 
   return (
     <AnimatePresence>

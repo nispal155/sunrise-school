@@ -2,25 +2,40 @@
 
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import type { CalendarType } from "./AcademicCalendar";
 
 interface CalendarHeaderProps {
-  currentDate: Date;
+  viewYear: number;
+  viewMonth: number;
+  calendarType: CalendarType;
   onPrevMonth: () => void;
   onNextMonth: () => void;
   onToday: () => void;
 }
 
+const NEPALI_MONTHS = [
+  "Baisakh", "Jestha", "Ashadh", "Shrawan", "Bhadra", "Ashwin", 
+  "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"
+];
+
+const ENGLISH_MONTHS = [
+  "January", "February", "March", "April", "May", "June", 
+  "July", "August", "September", "October", "November", "December"
+];
+
 export default function CalendarHeader({
-  currentDate,
+  viewYear,
+  viewMonth,
+  calendarType,
   onPrevMonth,
   onNextMonth,
   onToday,
 }: CalendarHeaderProps) {
-  const monthName = currentDate.toLocaleString("default", { month: "long" });
-  const year = currentDate.getFullYear();
+  const monthName = calendarType === "AD" ? ENGLISH_MONTHS[viewMonth] : NEPALI_MONTHS[viewMonth];
+  const year = viewYear;
   
   // Use a string key for animation so it triggers when month/year changes
-  const dateKey = `${monthName}-${year}`;
+  const dateKey = `${calendarType}-${monthName}-${year}`;
 
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">

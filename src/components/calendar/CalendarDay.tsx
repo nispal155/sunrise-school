@@ -4,6 +4,7 @@ import { AcademicEvent, getCategoryInfo } from "@/data/academicEvents";
 
 interface CalendarDayProps {
   date: Date;
+  displayDay?: number;
   isCurrentMonth: boolean;
   isToday: boolean;
   events: AcademicEvent[];
@@ -12,12 +13,13 @@ interface CalendarDayProps {
 
 export default function CalendarDay({
   date,
+  displayDay,
   isCurrentMonth,
   isToday,
   events,
   onClick,
 }: CalendarDayProps) {
-  const dayNumber = date.getDate();
+  const dayNumber = displayDay ?? date.getDate();
 
   return (
     <div
