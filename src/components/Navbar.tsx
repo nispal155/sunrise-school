@@ -23,8 +23,9 @@ export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  // In a single-page layout, the navbar is always on the home route, so we can make it solid when scrolled
-  const isSolid = scrolled;
+  // If we are on the home page, it becomes solid only when scrolled.
+  // On other pages (which have white backgrounds), it must always be solid.
+  const isSolid = scrolled || pathname !== "/";
 
   useEffect(() => {
     const handleScroll = () => {
