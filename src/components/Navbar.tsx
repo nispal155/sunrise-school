@@ -23,7 +23,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
+  const [isNewsDropdownOpen, setIsNewsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileNewsDropdownOpen, setIsMobileNewsDropdownOpen] = useState(false);
   const pathname = usePathname();
   // If we are on the home page, it becomes solid only when scrolled.
   // On other pages (which have white backgrounds), it must always be solid.
@@ -243,14 +245,49 @@ export default function Navbar() {
 
 
 
-            <Link
-              href="/#news"
-              className={`text-sm font-medium transition-colors hover:text-accent relative whitespace-nowrap ${
-                isSolid ? "text-text" : "text-white/90"
-              }`}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsNewsDropdownOpen(true)}
+              onMouseLeave={() => setIsNewsDropdownOpen(false)}
             >
-              News & Events
-            </Link>
+              <button
+                className={`text-sm font-medium transition-colors hover:text-accent relative flex items-center gap-1 whitespace-nowrap ${
+                  isSolid ? "text-text" : "text-white/90"
+                }`}
+              >
+                News & Events
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <AnimatePresence>
+                {isNewsDropdownOpen && (
+                  <motion.div
+                    variants={dropdownVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className={`absolute top-full left-0 mt-2 w-48 rounded-xl shadow-xl py-2 border overflow-hidden ${dropdownBgClass}`}
+                  >
+                    <Link
+                      href="/news/notices"
+                      className={dropdownItemClass}
+                      onClick={() => setIsNewsDropdownOpen(false)}
+                    >
+                      Notices
+                    </Link>
+                    <Link
+                      href="/news/achievements"
+                      className={dropdownItemClass}
+                      onClick={() => setIsNewsDropdownOpen(false)}
+                    >
+                      Achievements
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             <Link
               href="/calendar"
               className={`text-sm font-medium transition-colors hover:text-accent relative whitespace-nowrap ${
@@ -443,13 +480,47 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              <Link
-                href="/#news"
-                className={mobileItemClass}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                News & Events
-              </Link>
+              <div className="space-y-1">
+                <button
+                  className={mobileButtonClass}
+                  onClick={() => setIsMobileNewsDropdownOpen(!isMobileNewsDropdownOpen)}
+                >
+                  News & Events
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${isMobileNewsDropdownOpen ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <AnimatePresence>
+                  {isMobileNewsDropdownOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden pl-6 space-y-1"
+                    >
+                      <Link
+                        href="/news/notices"
+                        className={mobileSubItemClass}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Notices
+                      </Link>
+                      <Link
+                        href="/news/achievements"
+                        className={mobileSubItemClass}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Achievements
+                      </Link>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
               <Link
                 href="/calendar"
                 className={mobileItemClass}
