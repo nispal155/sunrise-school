@@ -271,6 +271,13 @@ export default function Navbar() {
                     className={`absolute top-full left-0 mt-2 w-48 rounded-xl shadow-xl py-2 border overflow-hidden ${dropdownBgClass}`}
                   >
                     <Link
+                      href="/#news"
+                      className={dropdownItemClass}
+                      onClick={() => setIsNewsDropdownOpen(false)}
+                    >
+                      All News & Events
+                    </Link>
+                    <Link
                       href="/news/notices"
                       className={dropdownItemClass}
                       onClick={() => setIsNewsDropdownOpen(false)}
@@ -503,6 +510,13 @@ export default function Navbar() {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden pl-6 space-y-1"
                     >
+                      <Link
+                        href="/#news"
+                        className={mobileSubItemClass}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        All News & Events
+                      </Link>
                       <Link
                         href="/news/notices"
                         className={mobileSubItemClass}
