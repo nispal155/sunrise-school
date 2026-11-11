@@ -145,7 +145,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 text-center text-sm text-white/50 flex flex-col md:flex-row justify-between items-center">
           <p>&copy; {currentYear} Sunrise English Boarding School. All rights reserved.</p>
-          <p className="mt-2 md:mt-0">Designed with ♥</p>
+          <p className="mt-2 md:mt-0">Managed By <a href="https://astratech.com.np" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors duration-200 underline">Astra Technology Horizon Pvt. Ltd</a></p>
         </div>
       </div>
     </footer>
